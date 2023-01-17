@@ -1,4 +1,3 @@
  hi-hello, there
  how are you-I am fine, how can I help you
  I am also fine-so, how can I help you 
- 
