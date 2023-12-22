@@ -1,4 +1,6 @@
 import os
+import tkinter as tk
+from PIL import Image, ImageTk
 
 def read_setupLogs(file):
     log = []
@@ -8,10 +10,6 @@ def read_setupLogs(file):
 
     locations = {i.split('|')[0]: i.split('|')[1] for i in log}
     return locations
-
-
-import tkinter as tk
-from PIL import Image, ImageTk
 
 # locations = {
 #     'google chrome': 'C:/Program Files/Google/Chrome/Application/chrome.exe',
@@ -94,12 +92,11 @@ def take_command():
     
     sentence = listening()
     print(sentence)
+    acceptableSpeech = ''
 
-    if 'Ani' or 'Anuj' in sentence:
+    if 'Ani' in sentence:
         if 'Ani':
             acceptableSpeech = sentence.replace('Ani', '')
-        elif 'Anuj':
-            acceptableSpeech = sentence.replace('Anuj', '')
 
         if acceptableSpeech in dict_form:
             engine.say(dict_form[acceptableSpeech])
@@ -192,15 +189,6 @@ window.geometry('500x500')
 window.configure(bg='white')
 window.title('pyAssistant')
 
-def read_setupLogs(file):
-    log = []
-    with open(file, 'r') as f:
-        for i in f.readlines():
-            log.append(i.replace('\n', ''))
-
-    locations = {i.split('|')[0]: i.split('|')[1] for i in log}
-    return locations
-
 
 def setting_pane():
 
@@ -257,19 +245,6 @@ def setting_pane():
     edgeL.grid(row=2, column=1, padx=20, pady=20)
 
     xlsxL.grid(row=3, column=1, padx=20, pady=20)
-
-
-def path(file_name, dir_name='pyAssistant'):
-    PATH = ''
-    PATH_DIR = ''
-    for root, dir, files in os.walk(f'{os.getcwd()[0]}:/'):
-        for f in files:
-            if f == file_name:
-                PATH = os.path.join(root, f)
-        for d in dir:
-            if d == dir_name:
-                PATH_DIR = os.path.join(root, d)
-    return PATH.replace('\\', '/'), PATH_DIR.replace('\\', '/')
 
 
 mic_image = Image.open(path(file_name='microphone.png')[0])
